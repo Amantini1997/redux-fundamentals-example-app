@@ -1,4 +1,21 @@
 import React from 'react'
+import appReducer from './reducer';
+import { STATUS } from './reducerConfig';
+
+const state = {
+  todos: [],
+  filter: {
+    status: STATUS.ALL,
+    colors: []
+  }
+};
+
+function createTodo() {
+  const input = document.getElementById("new-todo"); 
+  console.log(input.value)
+  appReducer(state, input.value)
+  input.value = ""
+}
 
 function App() {
   return (
@@ -13,7 +30,12 @@ function App() {
         </section>
       </nav>
       <section>
-        <h2>Welcome to the Redux Fundamentals example app!</h2>
+        <h2>New Todo</h2>
+        <input id="new-todo"/>
+        <button onClick={createTodo}>create</button>
+      </section>
+      <section>
+        {state.todos.map(todo => <div>{todo.id}: {todo.text}</div>)}
       </section>
     </div>
   )

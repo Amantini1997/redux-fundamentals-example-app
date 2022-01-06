@@ -1,23 +1,17 @@
-import React from 'react'
-import appReducer from './reducer';
-import { STATUS } from './reducerConfig';
-
-const state = {
-  todos: [],
-  filter: {
-    status: STATUS.ALL,
-    colors: []
-  }
-};
+import React, { useState } from 'react'
+import { ACTION } from './reducerConfig';
+import store from './store';
 
 function createTodo() {
   const input = document.getElementById("new-todo"); 
-  console.log(input.value)
-  appReducer(state, input.value)
-  input.value = ""
+  const payload = input.value;
+  store.dispatch({ type: ACTION.TODO.ADD, payload });
+  input.value = "";
 }
 
 function App() {
+  let [todos, setTodos] = useState(store.getState().todos);
+  store.subscribe(() => setTodos(store.getState().todos));
   return (
     <div className="App">
       <nav>
@@ -35,7 +29,7 @@ function App() {
         <button onClick={createTodo}>create</button>
       </section>
       <section>
-        {state.todos.map(todo => <div>{todo.id}: {todo.text}</div>)}
+        {todos.map(todo => <div>{todo.id}: {todo.text}</div>)}
       </section>
     </div>
   )

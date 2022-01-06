@@ -14,30 +14,25 @@ function nextTodoId(todos) {
 export default function todosReducer(state = initialState, {type, payload}) {
     switch (type) {
 
-        case ACTION.TODO_ADD:
-            const newTodo = {
-                id: nextTodoId(state.todos),
-                text: payload,
-                completed: false
-            }
-            return {
+        case ACTION.TODO.ADD:
+            return [
                 ...state,
-                todos: state.todos.concat(newTodo)
-            }
+                {
+                  id: nextTodoId(state),
+                  text: payload,
+                  completed: false
+                }
+            ]
     
-        case ACTION.TODO_TOGGLE: {
-            return {
-                ...state,
-                todos: state.todos.map(todo => {
-                    return (todo.id !== payload)
-                        ? todo
-                        : {
-                            ...todo,
-                            completed: !todo.completed
-                        }
-                })
-            }
-        }
+        case ACTION.TODO.TOGGLE: 
+            return state.map(todo => {
+                return (todo.id !== payload)
+                    ? todo
+                    : {
+                        ...todo,
+                        completed: !todo.completed
+                    }
+            })
 
         default:
             return state

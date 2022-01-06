@@ -1,0 +1,5 @@
+06 - 01 - 2022
+- Set up email signature;
+- Redux training;
+
+ask Jozef when the chair will be delivered

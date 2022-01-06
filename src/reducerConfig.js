@@ -11,7 +11,11 @@ export const STATUS = {
 }
 
 export const ACTION = {
-    TODO_ADD: "todos/todoAdded",
-    TODO_TOGGLE: "todos/todoToggled",
-    FILTER_CHANGE_STATUS: "filters/statusFilterChanged"
+    TODO: {
+        ADD: "todos/todoAdded",
+        TOGGLE: "todos/todoToggled"
+    },
+    FILTER: {
+        CHANGE_STATUS: "filters/statusFilterChanged"
+    }
 }

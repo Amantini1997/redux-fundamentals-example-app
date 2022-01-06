@@ -1,17 +1,6 @@
-import React, { useState } from 'react'
-import { ACTION } from './reducerConfig';
-import store from './store';
-
-function createTodo() {
-  const input = document.getElementById("new-todo"); 
-  const payload = input.value;
-  store.dispatch({ type: ACTION.TODO.ADD, payload });
-  input.value = "";
-}
+import React from 'react'
 
 function App() {
-  let [todos, setTodos] = useState(store.getState().todos);
-  store.subscribe(() => setTodos(store.getState().todos));
   return (
     <div className="App">
       <nav>
@@ -24,12 +13,7 @@ function App() {
         </section>
       </nav>
       <section>
-        <h2>New Todo</h2>
-        <input id="new-todo"/>
-        <button onClick={createTodo}>create</button>
-      </section>
-      <section>
-        {todos.map(todo => <div>{todo.id}: {todo.text}</div>)}
+        <h2>Welcome to the Redux Fundamentals example app!</h2>
       </section>
     </div>
   )

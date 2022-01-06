@@ -12,10 +12,3 @@ export const print3 = (storeAPI) => (next) => (action) => {
   console.log('3')
   return next(action)
 }
-
-export const loggerMiddleWare = storeAPI => next => action => {
-  console.log('dispatching', action)
-  let result = next(action)
-  console.log('next state', storeAPI.getState())
-  return result
-}
